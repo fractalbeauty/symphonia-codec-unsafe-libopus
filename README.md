@@ -1,6 +1,6 @@
 # symphonia-codec-unsafe-libopus
 This crate provides an Opus codec for [Symphonia](https://github.com/pdeljanov/Symphonia).
-It uses [a fork](https://github.com/hazelmeow/opus-rs) of [opus-rs](https://github.com/SpaceManiac/opus-rs) which provides high-level bindings for libopus.
+It uses [a fork](https://github.com/fractalbeauty/opus-rs) of [opus-rs](https://github.com/SpaceManiac/opus-rs) which provides high-level bindings for libopus.
 Instead of using `audiopus-sys`, the fork uses [unsafe-libopus](https://github.com/DCNick3/unsafe-libopus), which is a translation of libopus from C to unsafe Rust.
 This avoids having to compile the C version of libopus, which makes cross-compilation much less painful.
 

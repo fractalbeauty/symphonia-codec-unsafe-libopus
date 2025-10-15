@@ -5,7 +5,7 @@ edition = "2021"
 
 [dependencies]
 symphonia-core = { git = "https://github.com/pdeljanov/Symphonia.git", branch = "dev-0.6" }
-opus = { git = "https://github.com/hazelmeow/opus-rs.git", branch = "unsafe-libopus" }
+opus = { git = "https://github.com/fractalbeauty/opus-rs.git", branch = "unsafe-libopus" }
 
 [dev-dependencies]
 symphonia = { git = "https://github.com/pdeljanov/Symphonia.git", branch = "dev-0.6" }

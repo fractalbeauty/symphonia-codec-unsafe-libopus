@@ -65,7 +65,7 @@ dependencies = [
 [[package]]
 name = "opus"
 version = "0.3.0"
-source = "git+https://github.com/hazelmeow/opus-rs.git?branch=unsafe-libopus#a9b08c24ad013d573e71d4f3af63cf7e80c21863"
+source = "git+https://github.com/fractalbeauty/opus-rs.git?branch=unsafe-libopus#a9b08c24ad013d573e71d4f3af63cf7e80c21863"
 dependencies = [
  "unsafe-libopus",
 ]
