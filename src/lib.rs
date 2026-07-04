@@ -11,7 +11,7 @@ use symphonia_core::{
         CodecInfo,
     },
     errors::{decode_error, unsupported_error, Result},
-    formats::Packet,
+    packet::PacketRef,
     support_audio_codec,
 };
 
@@ -68,7 +68,7 @@ impl UnsafeLibopusDecoder {
         })
     }
 
-    fn decode_inner(&mut self, packet: &Packet) -> Result<()> {
+    fn decode_inner(&mut self, packet: &PacketRef<'_>) -> Result<()> {
         // Fill the audio buffer with silence.
         self.buf.clear();
         self.buf.render_silence(None);
@@ -82,7 +82,7 @@ impl UnsafeLibopusDecoder {
         };
 
         // Get the number of samples in this packet.
-        let Ok(packet_samples_per_ch) = decoder.get_nb_samples(packet.buf()) else {
+        let Ok(packet_samples_per_ch) = decoder.get_nb_samples(packet.data) else {
             return decode_error("unsafe-libopus: decode error");
         };
 
@@ -92,7 +92,7 @@ impl UnsafeLibopusDecoder {
 
         // Decode into interleaved buf.
         let Ok(decoded_samples_per_ch) =
-            decoder.decode_float(packet.buf(), &mut self.interleaved_buf, false)
+            decoder.decode_float(packet.data, &mut self.interleaved_buf, false)
         else {
             return decode_error("unsafe-libopus: decode error");
         };
@@ -134,7 +134,7 @@ impl AudioDecoder for UnsafeLibopusDecoder {
         &self.params
     }
 
-    fn decode(&mut self, packet: &Packet) -> Result<GenericAudioBufferRef<'_>> {
+    fn decode_ref(&mut self, packet: &PacketRef<'_>) -> Result<GenericAudioBufferRef<'_>> {
         if let Err(e) = self.decode_inner(packet) {
             self.buf.clear();
             Err(e)

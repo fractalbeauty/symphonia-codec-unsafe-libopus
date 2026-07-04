@@ -4,9 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-symphonia-core = { git = "https://github.com/pdeljanov/Symphonia.git", branch = "dev-0.6" }
+symphonia-core = "0.6.0"
 opus = { git = "https://github.com/fractalbeauty/opus-rs.git", branch = "unsafe-libopus" }
 
 [dev-dependencies]
-symphonia = { git = "https://github.com/pdeljanov/Symphonia.git", branch = "dev-0.6" }
+symphonia = "0.6.0"
 hound = "3.5.1"
